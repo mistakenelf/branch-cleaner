@@ -11,13 +11,13 @@ func (b Bubble) View() string {
 	var currentView string
 
 	if !b.ready {
-		return fmt.Sprintf("%s%s", b.loader.View(), "loading...")
+		return fmt.Sprintf("%s%s", b.spinner.View(), "loading...")
 	}
 
 	if b.help.ShowAll {
 		currentView = b.help.View(b.keys)
 	} else {
-		currentView = b.viewport.View()
+		currentView = b.list.View()
 	}
 
 	return lipgloss.NewStyle().

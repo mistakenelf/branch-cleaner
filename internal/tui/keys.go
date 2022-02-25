@@ -4,8 +4,9 @@ import "github.com/charmbracelet/bubbles/key"
 
 // keyMap struct contains all keybindings.
 type keyMap struct {
-	Help key.Binding
-	Quit key.Binding
+	Help         key.Binding
+	Quit         key.Binding
+	DeleteBranch key.Binding
 }
 
 // ShortHelp returns keybindings to be shown in the mini help view. It's part
@@ -32,6 +33,10 @@ func getDefaultKeyMap() keyMap {
 		Quit: key.NewBinding(
 			key.WithKeys("q", "esc", "ctrl+c"),
 			key.WithHelp("q", "quit"),
+		),
+		DeleteBranch: key.NewBinding(
+			key.WithKeys("d"),
+			key.WithHelp("d", "delete selected branch"),
 		),
 	}
 }

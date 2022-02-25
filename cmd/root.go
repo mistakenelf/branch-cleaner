@@ -5,16 +5,16 @@ import (
 	"log"
 	"os"
 
-	"github.com/knipferrc/bubbletea-starter/internal/config"
-	"github.com/knipferrc/bubbletea-starter/internal/tui"
+	"github.com/knipferrc/branch-cleaner/internal/config"
+	"github.com/knipferrc/branch-cleaner/internal/tui"
 
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/spf13/cobra"
 )
 
 var rootCmd = &cobra.Command{
-	Use:     "bubbletea-starter",
-	Short:   "bubbletea-starter is a starting point for bubbletea apps",
+	Use:     "branch-cleaner",
+	Short:   "branch-cleaner is a starting point for bubbletea apps",
 	Version: "0.0.1",
 	Args:    cobra.MaximumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -52,7 +52,7 @@ var rootCmd = &cobra.Command{
 		// Initialize new app.
 		p := tea.NewProgram(b, opts...)
 		if err := p.Start(); err != nil {
-			log.Fatal("Failed to start bubbletea-starter", err)
+			log.Fatal("Failed to start branch-cleaner", err)
 			os.Exit(1)
 		}
 	},

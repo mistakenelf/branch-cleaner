@@ -1,4 +1,4 @@
-project_name: "bubbletea-starter"
+project_name: "branch-cleaner"
 
 # before are hooks that will be run before any builds are done, so good to put install scripts and stuff that your builds need here
 before:
@@ -23,8 +23,8 @@ builds:
 
 nfpms:
   - maintainer: Tyler Knipfer <knipferrc@gmail.com>
-    description: bubbletea-starter is a starting point for bubbletea apps
-    homepage: https://github.com/knipferrc/bubbletea-starter
+    description: branch-cleaner is a starting point for bubbletea apps
+    homepage: https://github.com/knipferrc/branch-cleaner
     license: MIT
     formats:
       - deb

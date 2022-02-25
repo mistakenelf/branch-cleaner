@@ -52,12 +52,12 @@ execute() {
 }
 get_binaries() {
   case "$PLATFORM" in
-    darwin/386) BINARIES="bubbletea-starter" ;;
-    darwin/amd64) BINARIES="bubbletea-starter" ;;
-    linux/386) BINARIES="bubbletea-starter" ;;
-    linux/amd64) BINARIES="bubbletea-starter" ;;
-    windows/386) BINARIES="bubbletea-starter" ;;
-    windows/amd64) BINARIES="bubbletea-starter" ;;
+    darwin/386) BINARIES="branch-cleaner" ;;
+    darwin/amd64) BINARIES="branch-cleaner" ;;
+    linux/386) BINARIES="branch-cleaner" ;;
+    linux/amd64) BINARIES="branch-cleaner" ;;
+    windows/386) BINARIES="branch-cleaner" ;;
+    windows/amd64) BINARIES="branch-cleaner" ;;
     *)
       log_crit "platform $PLATFORM is not supported.  Make sure this script is up-to-date and file request at https://github.com/${PREFIX}/issues/new"
       exit 1
@@ -322,10 +322,10 @@ End of functions from https://github.com/client9/shlib
 ------------------------------------------------------------------------
 EOF
 
-PROJECT_NAME="bubbletea-starter"
+PROJECT_NAME="branch-cleaner"
 OWNER=knipferrc
-REPO="bubbletea-starter"
-BINARY=bubbletea-starter
+REPO="branch-cleaner"
+BINARY=branch-cleaner
 FORMAT=tar.gz
 OS=$(uname_os)
 ARCH=$(uname_arch)

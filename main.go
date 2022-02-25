@@ -1,6 +1,6 @@
 package main
 
-import "github.com/knipferrc/bubbletea-starter/cmd"
+import "github.com/knipferrc/branch-cleaner/cmd"
 
 func main() {
 	cmd.Execute()

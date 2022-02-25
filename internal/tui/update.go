@@ -2,6 +2,7 @@ package tui
 
 import (
 	"github.com/charmbracelet/bubbles/key"
+	"github.com/charmbracelet/bubbles/list"
 	tea "github.com/charmbracelet/bubbletea"
 )
 
@@ -15,12 +16,30 @@ func (b Bubble) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		b.viewport.Height = msg.Height
 		b.viewport.Width = msg.Width
 		b.help.Width = msg.Width
-		b.viewport.SetContent("Welcome to the bubbletea-starter app")
+		b.list.SetSize(msg.Width, msg.Height)
 
 		if !b.ready {
 			b.ready = true
 		}
 
+		return b, nil
+	case errorMsg:
+		b.viewport.SetContent(msg.Error())
+		return b, nil
+	case repoDataMsg:
+		var items []list.Item
+
+		b.repo = msg.repo
+
+		for _, branch := range msg.branches {
+			items = append(items, item{
+				title: branch.Name().Short(),
+				desc:  branch.Type().String(),
+			})
+		}
+
+		b.list.SetItems(items)
+		return b, nil
 	case tea.KeyMsg:
 		switch {
 		case key.Matches(msg, b.keys.Quit):
@@ -29,10 +48,15 @@ func (b Bubble) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			b.help.ShowAll = !b.help.ShowAll
 
 			return b, nil
+		case key.Matches(msg, b.keys.DeleteBranch):
+			return b, tea.Sequentially(b.deleteSelectedBranchCmd(), b.readCurrentGitBranchesCmd())
 		}
 	}
 
-	b.loader, cmd = b.loader.Update(msg)
+	b.list, cmd = b.list.Update(msg)
+	cmds = append(cmds, cmd)
+
+	b.spinner, cmd = b.spinner.Update(msg)
 	cmds = append(cmds, cmd)
 
 	b.viewport, cmd = b.viewport.Update(msg)

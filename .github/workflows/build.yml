@@ -28,5 +28,5 @@ jobs:
       - name: Upload assets
         uses: actions/upload-artifact@v2
         with:
-          name: bubbletea-starter
+          name: branch-cleaner
           path: dist/*
