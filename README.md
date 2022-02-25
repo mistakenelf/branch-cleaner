@@ -9,7 +9,7 @@
 
 ## About The Project
 
-A starting point for bubbletea apps
+A TUI to cleanup local branches
 
 ### Built With
 
