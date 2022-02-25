@@ -1,14 +1,15 @@
 package tui
 
 import (
-	"github.com/go-git/go-git/v5"
 	"github.com/knipferrc/branch-cleaner/internal/config"
 
 	"github.com/charmbracelet/bubbles/help"
 	"github.com/charmbracelet/bubbles/list"
 	"github.com/charmbracelet/bubbles/spinner"
 	"github.com/charmbracelet/bubbles/viewport"
+	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
+	"github.com/go-git/go-git/v5"
 )
 
 type item struct {
@@ -21,19 +22,21 @@ func (i item) FilterValue() string { return i.title }
 
 // Bubble represents the state of the UI.
 type Bubble struct {
-	keys      keyMap
-	help      help.Model
-	spinner   spinner.Model
-	viewport  viewport.Model
-	list      list.Model
-	appConfig config.Config
-	repo      *git.Repository
-	ready     bool
+	keys        keyMap
+	help        help.Model
+	spinner     spinner.Model
+	viewport    viewport.Model
+	list        list.Model
+	appConfig   config.Config
+	repo        *git.Repository
+	previousKey tea.KeyMsg
+	ready       bool
 }
 
 // NewBubble creates an instance of the UI.
 func NewBubble() Bubble {
 	cfg := config.GetConfig()
+
 	keys := getDefaultKeyMap()
 
 	s := spinner.New()

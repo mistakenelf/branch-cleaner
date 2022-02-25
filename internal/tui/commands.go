@@ -1,6 +1,8 @@
 package tui
 
 import (
+	"fmt"
+
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/go-git/go-git/v5"
 	"github.com/go-git/go-git/v5/plumbing"
@@ -14,7 +16,7 @@ type repoDataMsg struct {
 
 func (b Bubble) readCurrentGitBranchesCmd() tea.Cmd {
 	return func() tea.Msg {
-		r, err := git.PlainOpen(".git")
+		r, err := git.PlainOpen(git.GitDirName)
 		if err != nil {
 			return errorMsg(err)
 		}
@@ -52,7 +54,19 @@ func (b Bubble) deleteSelectedBranchCmd() tea.Cmd {
 			return nil
 		}
 
-		err := b.repo.DeleteBranch(selectedBranch)
+		headRef, err := b.repo.Head()
+		if err != nil {
+			return errorMsg(err)
+		}
+
+		referenceName := plumbing.ReferenceName(fmt.Sprintf("refs/heads/%s", selectedBranch))
+		ref := plumbing.NewHashReference(referenceName, headRef.Hash())
+		err = b.repo.Storer.SetReference(ref)
+		if err != nil {
+			return errorMsg(err)
+		}
+
+		err = b.repo.Storer.RemoveReference(ref.Name())
 		if err != nil {
 			return errorMsg(err)
 		}

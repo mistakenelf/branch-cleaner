@@ -34,13 +34,17 @@ func (b Bubble) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		for _, branch := range msg.branches {
 			items = append(items, item{
 				title: branch.Name().Short(),
-				desc:  branch.Type().String(),
+				desc:  branch.Hash().String(),
 			})
 		}
 
 		b.list.SetItems(items)
 		return b, nil
 	case tea.KeyMsg:
+		if b.previousKey.String() == "d" && msg.String() == "d" {
+			return b, tea.Sequentially(b.deleteSelectedBranchCmd(), b.readCurrentGitBranchesCmd())
+		}
+
 		switch {
 		case key.Matches(msg, b.keys.Quit):
 			return b, tea.Quit
@@ -48,9 +52,9 @@ func (b Bubble) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			b.help.ShowAll = !b.help.ShowAll
 
 			return b, nil
-		case key.Matches(msg, b.keys.DeleteBranch):
-			return b, tea.Sequentially(b.deleteSelectedBranchCmd(), b.readCurrentGitBranchesCmd())
 		}
+
+		b.previousKey = msg
 	}
 
 	b.list, cmd = b.list.Update(msg)
