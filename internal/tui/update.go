@@ -1,7 +1,6 @@
 package tui
 
 import (
-	"github.com/charmbracelet/bubbles/key"
 	"github.com/charmbracelet/bubbles/list"
 	tea "github.com/charmbracelet/bubbletea"
 )
@@ -13,18 +12,12 @@ func (b Bubble) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 	switch msg := msg.(type) {
 	case tea.WindowSizeMsg:
-		b.viewport.Height = msg.Height
-		b.viewport.Width = msg.Width
-		b.help.Width = msg.Width
 		b.list.SetSize(msg.Width, msg.Height)
 
 		if !b.ready {
 			b.ready = true
 		}
 
-		return b, nil
-	case errorMsg:
-		b.viewport.SetContent(msg.Error())
 		return b, nil
 	case repoDataMsg:
 		var items []list.Item
@@ -45,15 +38,6 @@ func (b Bubble) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			return b, tea.Sequentially(b.deleteSelectedBranchCmd(), b.readCurrentGitBranchesCmd())
 		}
 
-		switch {
-		case key.Matches(msg, b.keys.Quit):
-			return b, tea.Quit
-		case key.Matches(msg, b.keys.Help):
-			b.help.ShowAll = !b.help.ShowAll
-
-			return b, nil
-		}
-
 		b.previousKey = msg
 	}
 
@@ -61,9 +45,6 @@ func (b Bubble) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	cmds = append(cmds, cmd)
 
 	b.spinner, cmd = b.spinner.Update(msg)
-	cmds = append(cmds, cmd)
-
-	b.viewport, cmd = b.viewport.Update(msg)
 	cmds = append(cmds, cmd)
 
 	return b, tea.Batch(cmds...)
