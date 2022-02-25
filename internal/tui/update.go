@@ -23,6 +23,7 @@ func (b Bubble) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		var items []list.Item
 
 		b.repo = msg.repo
+		b.previousKey = tea.KeyMsg{}
 
 		for _, branch := range msg.branches {
 			items = append(items, item{
