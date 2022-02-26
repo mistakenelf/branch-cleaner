@@ -9,7 +9,7 @@
 
 ## About The Project
 
-A TUI to cleanup local branches
+A TUI to cleanup local git branches
 
 ### Built With
 
@@ -36,7 +36,7 @@ go install github.com/knipferrc/branch-cleaner@latest
 
 ## Features
 
-- Add your awesome feature list here
+- TUI to view the current git directories branches and ability to delete them easily
 
 ## Configuration
 
