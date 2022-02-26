@@ -12,6 +12,7 @@ import (
 type errorMsg error
 type repoDataMsg []list.Item
 
+// readCurrentGitBranchesCmd returns a list of all branches in the current git repository.
 func readCurrentGitBranchesCmd() tea.Cmd {
 	return func() tea.Msg {
 		r, err := git.PlainOpen(git.GitDirName)
@@ -45,7 +46,7 @@ func readCurrentGitBranchesCmd() tea.Cmd {
 
 			items = append(items, item{
 				title: branch.Name().Short(),
-				desc:  fmt.Sprintf("Latest Commit: %s", commit.Message),
+				desc:  commit.Message,
 			})
 		}
 
@@ -53,6 +54,7 @@ func readCurrentGitBranchesCmd() tea.Cmd {
 	}
 }
 
+// deleteSelectedBranchCmd deletes the selected branch.
 func deleteSelectedBranchCmd(branchName string) tea.Cmd {
 	return func() tea.Msg {
 		r, err := git.PlainOpen(git.GitDirName)
