@@ -30,10 +30,7 @@ func newItemDelegate(keys *delegateKeyMap) list.DefaultDelegate {
 			case key.Matches(msg, keys.remove):
 				m.NewStatusMessage(statusMessageStyle("Deleted " + title))
 
-				cmds = append(cmds, tea.Sequentially(
-					deleteSelectedBranchCmd(title),
-					readCurrentGitBranchesCmd(),
-				))
+				cmds = append(cmds, deleteSelectedBranchCmd(title))
 
 				index := m.Index()
 				m.RemoveItem(index)

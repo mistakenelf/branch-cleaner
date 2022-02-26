@@ -38,9 +38,14 @@ func readCurrentGitBranchesCmd() tea.Cmd {
 		var items []list.Item
 
 		for _, branch := range branchNames {
+			commit, err := r.CommitObject(branch.Hash())
+			if err != nil {
+				return errorMsg(err)
+			}
+
 			items = append(items, item{
 				title: branch.Name().Short(),
-				desc:  branch.Hash().String(),
+				desc:  fmt.Sprintf("Latest Commit: %s", commit.Message),
 			})
 		}
 

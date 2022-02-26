@@ -13,10 +13,6 @@ func (b Bubble) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	case tea.WindowSizeMsg:
 		b.list.SetSize(msg.Width, msg.Height)
 
-		if !b.ready {
-			b.ready = true
-		}
-
 		return b, nil
 	case repoDataMsg:
 		b.list.SetItems(msg)
@@ -24,9 +20,6 @@ func (b Bubble) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	}
 
 	b.list, cmd = b.list.Update(msg)
-	cmds = append(cmds, cmd)
-
-	b.spinner, cmd = b.spinner.Update(msg)
 	cmds = append(cmds, cmd)
 
 	return b, tea.Batch(cmds...)
