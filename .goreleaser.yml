@@ -1,0 +1,32 @@
+project_name: "branch-cleaner"
+
+# before are hooks that will be run before any builds are done, so good to put install scripts and stuff that your builds need here
+before:
+  hooks:
+    # Remove unused packaged from the build process
+    - go mod tidy
+    # You may remove this if you don't use go modules - Downloads all modules specified in go.mod
+    - go mod download
+
+builds:
+  - main: ./main.go
+    binary: bubletea-starter
+    goos:
+      - linux
+      - windows
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+    env:
+      - CGO_ENABLED=0
+
+nfpms:
+  - maintainer: Tyler Knipfer <knipferrc@gmail.com>
+    description: branch-cleaner is a starting point for bubbletea apps
+    homepage: https://github.com/knipferrc/branch-cleaner
+    license: MIT
+    formats:
+      - deb
+      - rpm
+      - apk
