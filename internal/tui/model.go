@@ -25,6 +25,8 @@ type Bubble struct {
 	list         list.Model
 	delegateKeys *delegateKeyMap
 	appConfig    config.Config
+	screenWidth  int
+	screenHeight int
 }
 
 // NewBubble creates an instance of the UI.
