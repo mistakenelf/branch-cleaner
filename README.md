@@ -36,7 +36,7 @@ go install github.com/knipferrc/branch-cleaner@latest
 
 ## Features
 
-- TUI to view the current git directories branches and ability to delete them easily
+- TUI to view the current git directories branches with the ability to delete them easily
 
 ## Configuration
 
