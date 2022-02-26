@@ -3,7 +3,7 @@
   <p align="center">
     <a href="https://github.com/knipferrc/branch-cleaner/releases"><img src="https://img.shields.io/github/v/release/knipferrc/branch-cleaner" alt="Latest Release"></a>
     <a href="https://pkg.go.dev/github.com/knipferrc/branch-cleaner?tab=doc"><img src="https://godoc.org/github.com/golang/gddo?status.svg" alt="GoDoc"></a>
-    <a href="https://github.com/knipferrc/branch-cleaner/actions"><img src="https://img.shields.io/github/workflow/status/knipferrc/branch-cleaner/Release" alt="Build Status"></a>
+    <a href="https://github.com/knipferrc/branch-cleaner/actions"><img src="https://github.com/knipferrc/branch-cleaner/actions/workflows/build.yml/badge.svg" alt="Build Status"></a>
   </p>
 </p>
 
