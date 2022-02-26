@@ -2,7 +2,6 @@ package tui
 
 import (
 	"fmt"
-	"log"
 
 	"github.com/charmbracelet/bubbles/list"
 	tea "github.com/charmbracelet/bubbletea"
@@ -55,8 +54,6 @@ func deleteSelectedBranchCmd(branchName string) tea.Cmd {
 		if err != nil {
 			return errorMsg(err)
 		}
-
-		log.Output(2, "here")
 
 		headRef, err := r.Head()
 		if err != nil {
