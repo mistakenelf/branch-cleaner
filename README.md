@@ -5,6 +5,9 @@
     <a href="https://pkg.go.dev/github.com/knipferrc/branch-cleaner?tab=doc"><img src="https://godoc.org/github.com/golang/gddo?status.svg" alt="GoDoc"></a>
     <a href="https://github.com/knipferrc/branch-cleaner/actions"><img src="https://github.com/knipferrc/branch-cleaner/actions/workflows/build.yml/badge.svg" alt="Build Status"></a>
   </p>
+  <p align="center">
+    <img src="./assets/screenshot.png" height="180" />
+  </p>
 </p>
 
 ## About The Project
