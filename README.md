@@ -6,7 +6,7 @@
     <a href="https://github.com/knipferrc/branch-cleaner/actions"><img src="https://github.com/knipferrc/branch-cleaner/actions/workflows/build.yml/badge.svg" alt="Build Status"></a>
   </p>
   <p align="center">
-    <img src="./assets/screenshot.png" height="180" />
+    <img src="./assets/screenshot.png" height="350" />
   </p>
 </p>
 
