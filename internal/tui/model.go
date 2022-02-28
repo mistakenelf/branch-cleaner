@@ -3,6 +3,7 @@ package tui
 import (
 	"github.com/knipferrc/branch-cleaner/internal/config"
 
+	"github.com/charmbracelet/bubbles/key"
 	"github.com/charmbracelet/bubbles/list"
 )
 
@@ -23,7 +24,6 @@ func (i item) FilterValue() string { return i.title }
 // Bubble represents the state of the UI.
 type Bubble struct {
 	list         list.Model
-	delegateKeys *delegateKeyMap
 	appConfig    config.Config
 	screenWidth  int
 	screenHeight int
@@ -33,14 +33,21 @@ type Bubble struct {
 func NewBubble() Bubble {
 	cfg := config.GetConfig()
 
-	delegateKeys := newDelegateKeyMap()
-	delegate := newItemDelegate(delegateKeys)
-	l := list.New(make([]list.Item, 0), delegate, 0, 0)
+	l := list.New(make([]list.Item, 0), list.NewDefaultDelegate(), 0, 0)
 	l.Title = "Branch Cleaner"
+	l.AdditionalShortHelpKeys = func() []key.Binding {
+		return []key.Binding{
+			keyDeletedSelected,
+		}
+	}
+	l.AdditionalFullHelpKeys = func() []key.Binding {
+		return []key.Binding{
+			keyDeletedSelected,
+		}
+	}
 
 	return Bubble{
-		list:         l,
-		appConfig:    cfg,
-		delegateKeys: delegateKeys,
+		list:      l,
+		appConfig: cfg,
 	}
 }
