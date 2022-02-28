@@ -9,8 +9,7 @@ import (
 
 // SettingsConfig struct represents the config for the settings.
 type SettingsConfig struct {
-	EnableLogging    bool `mapstructure:"enable_logging"`
-	EnableMouseWheel bool `mapstructure:"enable_mousewheel"`
+	EnableLogging bool `mapstructure:"enable_logging"`
 }
 
 // Config represents the main config for the application.
@@ -27,7 +26,6 @@ func LoadConfig() {
 
 	// Set default config values.
 	viper.SetDefault("settings.enable_logging", false)
-	viper.SetDefault("settings.enable_mousewheel", true)
 
 	if err := viper.SafeWriteConfig(); err != nil {
 		if os.IsNotExist(err) {
