@@ -49,5 +49,4 @@ go install github.com/knipferrc/branch-cleaner@latest
 ```yml
 settings:
   enable_logging: false
-  enable_mousewheel: true
 ```
