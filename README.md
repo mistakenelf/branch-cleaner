@@ -1,14 +1,12 @@
-<p align="center">
-  <h1 align="center">branch-cleaner</h1>
-  <p align="center">
-    <a href="https://github.com/knipferrc/branch-cleaner/releases"><img src="https://img.shields.io/github/v/release/knipferrc/branch-cleaner" alt="Latest Release"></a>
-    <a href="https://pkg.go.dev/github.com/knipferrc/branch-cleaner?tab=doc"><img src="https://godoc.org/github.com/golang/gddo?status.svg" alt="GoDoc"></a>
-    <a href="https://github.com/knipferrc/branch-cleaner/actions"><img src="https://github.com/knipferrc/branch-cleaner/actions/workflows/build.yml/badge.svg" alt="Build Status"></a>
-  </p>
-  <p align="center">
-    <img src="./assets/screenshot.png" height="350" />
-  </p>
-</p>
+# branch-cleaner
+
+[![Release](https://img.shields.io/github/release/knipferrc/branch-cleaner.svg?style=flat-square)](https://github.com/knipferrc/branch-cleaner/releases/latest)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
+[![Go Report Card](https://goreportcard.com/badge/github.com/knipferrc/branch-cleaner?style=flat-square)](https://goreportcard.com/report/github.com/knipferrc/branch-cleaner)
+[![Godoc](https://godoc.org/github.com/knipferrc/branch-cleaner?status.svg&style=flat-square)](http://godoc.org/github.com/knipferrc/branch-cleaner)
+[![Powered By: GoReleaser](https://img.shields.io/badge/powered%20by-goreleaser-green.svg?style=flat-square)](https://github.com/goreleaser)
+
+![Screenshot](/assets/screenshot.png)
 
 ## About The Project
 
