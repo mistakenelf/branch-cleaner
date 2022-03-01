@@ -37,8 +37,9 @@ go install github.com/knipferrc/branch-cleaner@latest
 
 ## Features
 
-- Easily delete branches
+- Easily delete branches one at a time or in bulk
 - Ability to filter by branch name
+- Protect branches from being deleted
 
 ## Configuration
 
@@ -47,4 +48,10 @@ go install github.com/knipferrc/branch-cleaner@latest
 ```yml
 settings:
   enable_logging: false
+  protected_branches:
+    - main
+    - master
+    - develop
+    - dev
+    - prod
 ```
