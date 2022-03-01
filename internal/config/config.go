@@ -9,7 +9,8 @@ import (
 
 // SettingsConfig struct represents the config for the settings.
 type SettingsConfig struct {
-	EnableLogging bool `mapstructure:"enable_logging"`
+	EnableLogging     bool     `mapstructure:"enable_logging"`
+	ProtectedBranches []string `mapstructure:"protected_branches"`
 }
 
 // Config represents the main config for the application.
@@ -26,6 +27,7 @@ func LoadConfig() {
 
 	// Set default config values.
 	viper.SetDefault("settings.enable_logging", false)
+	viper.SetDefault("settings.protected_branches", []string{"main", "master", "develop", "dev", "prod"})
 
 	if err := viper.SafeWriteConfig(); err != nil {
 		if os.IsNotExist(err) {
