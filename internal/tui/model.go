@@ -5,7 +5,6 @@ import (
 
 	"github.com/charmbracelet/bubbles/key"
 	"github.com/charmbracelet/bubbles/list"
-	"github.com/charmbracelet/bubbles/spinner"
 )
 
 // item represents a list item.
@@ -36,7 +35,6 @@ func NewBubble() Bubble {
 
 	l := list.New([]list.Item{}, list.NewDefaultDelegate(), 0, 0)
 	l.Title = "Branch Cleaner"
-	l.SetSpinner(spinner.MiniDot)
 	l.AdditionalShortHelpKeys = func() []key.Binding {
 		return []key.Binding{
 			keyDeletedSelected,

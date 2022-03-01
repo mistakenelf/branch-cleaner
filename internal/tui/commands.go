@@ -2,6 +2,7 @@ package tui
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/charmbracelet/bubbles/list"
 	tea "github.com/charmbracelet/bubbletea"
@@ -45,8 +46,8 @@ func readCurrentGitBranchesCmd() tea.Cmd {
 			}
 
 			items = append(items, item{
-				title: branch.Name().Short(),
-				desc:  commit.Message,
+				title: strings.TrimRight(branch.Name().Short(), "\r\n\t"),
+				desc:  strings.TrimRight(commit.Message, "\r\n\t"),
 			})
 		}
 

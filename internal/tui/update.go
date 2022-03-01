@@ -15,9 +15,7 @@ func (b Bubble) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		b.screenWidth = msg.Width
 		b.screenHeight = msg.Height
 		v, h := listStyle.GetFrameSize()
-		b.list.SetSize(msg.Width-h, msg.Height-v-3)
-
-		return b, nil
+		b.list.SetSize(msg.Width-h, msg.Height-v)
 	case repoDataMsg:
 		b.list.SetItems(msg)
 		return b, nil
