@@ -3,5 +3,6 @@ package tui
 import "github.com/charmbracelet/bubbles/key"
 
 var (
-	keyDeletedSelected = key.NewBinding(key.WithKeys("x"), key.WithHelp("x", "delete selected branch"))
+	deleteKey = key.NewBinding(key.WithKeys("x"), key.WithHelp("x", "delete branch(es)"))
+	selectKey = key.NewBinding(key.WithKeys(" "), key.WithHelp("space", "select branch"))
 )
