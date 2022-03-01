@@ -47,7 +47,7 @@ func readCurrentGitBranchesCmd() tea.Cmd {
 
 			items = append(items, item{
 				title: strings.TrimRight(branch.Name().Short(), "\r\n\t"),
-				desc:  strings.TrimRight(commit.Message, "\r\n\t"),
+				desc:  strings.ReplaceAll(strings.TrimRight(commit.Message, "\r\n\t"), "\n", " "),
 			})
 		}
 
