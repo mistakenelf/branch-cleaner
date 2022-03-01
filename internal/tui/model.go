@@ -10,10 +10,17 @@ import (
 // item represents a list item.
 type item struct {
 	title, desc string
+	selected    bool
 }
 
 // Title returns the title of the list item.
-func (i item) Title() string { return i.title }
+func (i item) Title() string {
+	if i.selected {
+		return iconSelected + " " + i.title
+	}
+
+	return iconNotSelected + " " + i.title
+}
 
 // Description returns the description of the list item.
 func (i item) Description() string { return i.desc }
@@ -23,10 +30,8 @@ func (i item) FilterValue() string { return i.title }
 
 // Bubble represents the state of the UI.
 type Bubble struct {
-	list         list.Model
-	appConfig    config.Config
-	screenWidth  int
-	screenHeight int
+	list      list.Model
+	appConfig config.Config
 }
 
 // NewBubble creates an instance of the UI.
@@ -37,12 +42,14 @@ func NewBubble() Bubble {
 	l.Title = "Branch Cleaner"
 	l.AdditionalShortHelpKeys = func() []key.Binding {
 		return []key.Binding{
-			keyDeletedSelected,
+			deleteKey,
+			selectKey,
 		}
 	}
 	l.AdditionalFullHelpKeys = func() []key.Binding {
 		return []key.Binding{
-			keyDeletedSelected,
+			deleteKey,
+			selectKey,
 		}
 	}
 
