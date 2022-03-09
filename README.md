@@ -41,6 +41,19 @@ go install github.com/knipferrc/branch-cleaner@latest
 - Ability to filter by branch name
 - Protect branches from being deleted
 
+## Usage
+
+- `branch-cleaner` will start the application in the current directory
+- `branch-cleaner -h` will show the help menu
+- `branch-cleaner -v` will show the current version
+- `branch-cleaner update` will update branch cleaner to the latest version
+
+Too much to type? Create an alias:
+
+```
+alias bc="branch-cleaner"
+```
+
 ## Configuration
 
 - A config file will be generated at `~/.branch-cleaner.yml` when you first run `branch-cleaner`
