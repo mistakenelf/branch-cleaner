@@ -98,7 +98,22 @@ func (b Bubble) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 				b.list.SetItems(items)
 			}
-
+		case key.Matches(msg, selectAllKey):
+			for idx, i := range b.list.Items() {
+				item := i.(item)
+				if !contains(b.appConfig.Settings.ProtectedBranches, item.title) {
+					item.selected = true
+					b.list.RemoveItem(idx)
+					cmds = append(cmds, b.list.InsertItem(idx, item))
+				}
+			}
+		case key.Matches(msg, unselectAllKey):
+			for idx, i := range b.list.Items() {
+				item := i.(item)
+				item.selected = false
+				b.list.RemoveItem(idx)
+				cmds = append(cmds, b.list.InsertItem(idx, item))
+			}
 		case key.Matches(msg, selectKey):
 			idx := b.list.Index()
 			item := b.list.SelectedItem().(item)
