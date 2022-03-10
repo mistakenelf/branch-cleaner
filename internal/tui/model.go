@@ -34,10 +34,8 @@ type Bubble struct {
 	appConfig config.Config
 }
 
-// NewBubble creates an instance of the UI.
-func NewBubble() Bubble {
-	cfg := config.GetConfig()
-
+// New creates an instance of the UI.
+func New(cfg config.Config) Bubble {
 	l := list.New([]list.Item{}, list.NewDefaultDelegate(), 0, 0)
 	l.Title = "Branch Cleaner"
 	l.AdditionalShortHelpKeys = func() []key.Binding {

@@ -18,9 +18,10 @@ var rootCmd = &cobra.Command{
 	Version: "0.2.0",
 	Args:    cobra.MaximumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		config.LoadConfig()
-
-		cfg := config.GetConfig()
+		cfg, err := config.ParseConfig()
+		if err != nil {
+			log.Fatal(err)
+		}
 
 		// If logging is enabled, logs will be output to debug.log.
 		if cfg.Settings.EnableLogging {
@@ -38,7 +39,7 @@ var rootCmd = &cobra.Command{
 			}()
 		}
 
-		b := tui.NewBubble()
+		b := tui.New(cfg)
 		var opts []tea.ProgramOption
 
 		// Always append alt screen program option.
