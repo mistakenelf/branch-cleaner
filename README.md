@@ -56,7 +56,7 @@ alias bc="branch-cleaner"
 
 ## Configuration
 
-- A config file will be generated at `~/.branch-cleaner.yml` when you first run `branch-cleaner`
+A config file will be generated `(branch-cleaner.yml)` in the config directory of the OS in which the app is ran from. If XDG_CONFIG_HOME is set, that will be used instead.
 
 ```yml
 settings:
