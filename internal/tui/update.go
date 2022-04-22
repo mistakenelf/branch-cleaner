@@ -23,6 +23,7 @@ func contains(s []string, str string) bool {
 // splitBySelections splits the items into two slices, one with selected items and one with unselected items.
 func splitBySelection(items []list.Item) ([]item, []item) {
 	var selected, unselected []item
+
 	for _, it := range items {
 		item := it.(item)
 		if item.selected {
@@ -31,6 +32,7 @@ func splitBySelection(items []list.Item) ([]item, []item) {
 			unselected = append(unselected, item)
 		}
 	}
+
 	return selected, unselected
 }
 
