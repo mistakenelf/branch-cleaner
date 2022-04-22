@@ -52,6 +52,10 @@ func (b Bubble) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	case errorMsg:
 		return b, b.list.NewStatusMessage(statusMessageErrorStyle(msg.Error()))
 	case tea.KeyMsg:
+		if b.list.FilterState() == list.Filtering {
+			break
+		}
+
 		switch {
 		case key.Matches(msg, deleteKey):
 			var deletedBranchTitles []string
