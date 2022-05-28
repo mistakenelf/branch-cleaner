@@ -54,6 +54,7 @@ get_binaries() {
   case "$PLATFORM" in
     darwin/386) BINARIES="branch-cleaner" ;;
     darwin/amd64) BINARIES="branch-cleaner" ;;
+    darwin/arm64) BINARIES="branch-cleaner" ;;
     linux/386) BINARIES="branch-cleaner" ;;
     linux/amd64) BINARIES="branch-cleaner" ;;
     windows/386) BINARIES="branch-cleaner" ;;
