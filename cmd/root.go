@@ -15,7 +15,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:     "branch-cleaner",
 	Short:   "branch-cleaner is a tui for cleaning up local git branches easily",
-	Version: "0.4.0",
+	Version: "0.4.1",
 	Args:    cobra.MaximumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		cfg, err := config.ParseConfig()
@@ -47,7 +47,7 @@ var rootCmd = &cobra.Command{
 
 		// Initialize new app.
 		p := tea.NewProgram(b, opts...)
-		if err := p.Start(); err != nil {
+		if _, err := p.Run(); err != nil {
 			log.Fatal("Failed to start branch-cleaner", err)
 			os.Exit(1)
 		}
