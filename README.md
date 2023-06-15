@@ -18,7 +18,6 @@ A TUI to cleanup local git branches
 - [bubbletea](https://github.com/charmbracelet/bubbletea)
 - [bubbles](https://github.com/charmbracelet/bubbles)
 - [lipgloss](https://github.com/charmbracelet/lipgloss)
-- [Viper](https://github.com/spf13/viper)
 - [Cobra](https://github.com/spf13/cobra)
 
 ## Installation
