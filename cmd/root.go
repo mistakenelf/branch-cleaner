@@ -39,14 +39,14 @@ var rootCmd = &cobra.Command{
 			}()
 		}
 
-		b := tui.New(cfg)
+		m := tui.New(cfg)
 		var opts []tea.ProgramOption
 
 		// Always append alt screen program option.
 		opts = append(opts, tea.WithAltScreen())
 
 		// Initialize new app.
-		p := tea.NewProgram(b, opts...)
+		p := tea.NewProgram(m, opts...)
 		if _, err := p.Run(); err != nil {
 			log.Fatal("Failed to start branch-cleaner", err)
 			os.Exit(1)

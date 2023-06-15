@@ -28,14 +28,14 @@ func (i item) Description() string { return i.desc }
 // FilterValue returns the current filter value.
 func (i item) FilterValue() string { return i.title }
 
-// Bubble represents the state of the UI.
-type Bubble struct {
+// model represents the state of the UI.
+type model struct {
 	list      list.Model
 	appConfig config.Config
 }
 
 // New creates an instance of the UI.
-func New(cfg config.Config) Bubble {
+func New(cfg config.Config) model {
 	l := list.New([]list.Item{}, list.NewDefaultDelegate(), 0, 0)
 	l.Title = "Branch Cleaner"
 	l.AdditionalShortHelpKeys = func() []key.Binding {
@@ -51,7 +51,7 @@ func New(cfg config.Config) Bubble {
 		}
 	}
 
-	return Bubble{
+	return model{
 		list:      l,
 		appConfig: cfg,
 	}

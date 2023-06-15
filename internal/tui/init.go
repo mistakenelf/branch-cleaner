@@ -5,6 +5,6 @@ import (
 )
 
 // Init initializes the UI.
-func (b Bubble) Init() tea.Cmd {
-	return tea.Batch(b.list.StartSpinner(), readCurrentGitBranchesCmd())
+func (m model) Init() tea.Cmd {
+	return tea.Batch(m.list.StartSpinner(), readCurrentGitBranchesCmd())
 }

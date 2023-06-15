@@ -37,22 +37,22 @@ func splitBySelection(items []list.Item) ([]item, []item) {
 }
 
 // Update handles updating the UI.
-func (b Bubble) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
+func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	var cmd tea.Cmd
 	var cmds []tea.Cmd
 
 	switch msg := msg.(type) {
 	case tea.WindowSizeMsg:
 		v, h := listStyle.GetFrameSize()
-		b.list.SetSize(msg.Width-h, msg.Height-v)
+		m.list.SetSize(msg.Width-h, msg.Height-v)
 	case repoDataMsg:
-		b.list.SetItems(msg)
+		m.list.SetItems(msg)
 
-		return b, nil
+		return m, nil
 	case errorMsg:
-		return b, b.list.NewStatusMessage(statusMessageErrorStyle(msg.Error()))
+		return m, m.list.NewStatusMessage(statusMessageErrorStyle(msg.Error()))
 	case tea.KeyMsg:
-		if b.list.FilterState() == list.Filtering {
+		if m.list.FilterState() == list.Filtering {
 			break
 		}
 
@@ -61,14 +61,14 @@ func (b Bubble) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			var deletedBranchTitles []string
 			var protectedBranchTitles []string
 
-			selected, unselected := splitBySelection(b.list.Items())
+			selected, unselected := splitBySelection(m.list.Items())
 
 			for _, it := range selected {
-				if !contains(b.appConfig.Settings.ProtectedBranches, it.title) {
+				if !contains(m.appConfig.Settings.ProtectedBranches, it.title) {
 					cmds = append(cmds, deleteSelectedBranchCmd(it.title))
 					deletedBranchTitles = append(deletedBranchTitles, it.title)
 
-					if len(b.list.Items()) == 0 {
+					if len(m.list.Items()) == 0 {
 						deleteKey.SetEnabled(false)
 					}
 				} else {
@@ -78,19 +78,19 @@ func (b Bubble) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 			if len(deletedBranchTitles) > 0 {
 				statusMessage := fmt.Sprintf("Deleted branches: %s", strings.Join(deletedBranchTitles, ", "))
-				statusCmd := b.list.NewStatusMessage(
+				statusCmd := m.list.NewStatusMessage(
 					statusMessageInfoStyle(statusMessage),
 				)
 				cmds = append(cmds, statusCmd)
-				b.list.ResetSelected()
+				m.list.ResetSelected()
 			}
 
 			if len(protectedBranchTitles) > 0 {
 				statusMessage := fmt.Sprintf("Cannot delete protected branch(es): %s", strings.Join(protectedBranchTitles, ", "))
-				statusCmd := b.list.NewStatusMessage(
+				statusCmd := m.list.NewStatusMessage(
 					statusMessageErrorStyle(statusMessage),
 				)
-				return b, statusCmd
+				return m, statusCmd
 			}
 
 			if len(unselected) > 0 {
@@ -102,35 +102,35 @@ func (b Bubble) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 					})
 				}
 
-				b.list.SetItems(items)
+				m.list.SetItems(items)
 			}
 		case key.Matches(msg, selectAllKey):
-			for idx, i := range b.list.Items() {
+			for idx, i := range m.list.Items() {
 				item := i.(item)
-				if !contains(b.appConfig.Settings.ProtectedBranches, item.title) {
+				if !contains(m.appConfig.Settings.ProtectedBranches, item.title) {
 					item.selected = true
-					b.list.RemoveItem(idx)
-					cmds = append(cmds, b.list.InsertItem(idx, item))
+					m.list.RemoveItem(idx)
+					cmds = append(cmds, m.list.InsertItem(idx, item))
 				}
 			}
 		case key.Matches(msg, unselectAllKey):
-			for idx, i := range b.list.Items() {
+			for idx, i := range m.list.Items() {
 				item := i.(item)
 				item.selected = false
-				b.list.RemoveItem(idx)
-				cmds = append(cmds, b.list.InsertItem(idx, item))
+				m.list.RemoveItem(idx)
+				cmds = append(cmds, m.list.InsertItem(idx, item))
 			}
 		case key.Matches(msg, selectKey):
-			idx := b.list.Index()
-			item := b.list.SelectedItem().(item)
+			idx := m.list.Index()
+			item := m.list.SelectedItem().(item)
 			item.selected = !item.selected
-			b.list.RemoveItem(idx)
-			cmds = append(cmds, b.list.InsertItem(idx, item))
+			m.list.RemoveItem(idx)
+			cmds = append(cmds, m.list.InsertItem(idx, item))
 		}
 	}
 
-	b.list, cmd = b.list.Update(msg)
+	m.list, cmd = m.list.Update(msg)
 	cmds = append(cmds, cmd)
 
-	return b, tea.Batch(cmds...)
+	return m, tea.Batch(cmds...)
 }
