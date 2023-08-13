@@ -55,15 +55,8 @@ alias bc="branch-cleaner"
 
 ## Configuration
 
-A config file will be generated `(branch-cleaner.yml)` in the config directory of the OS in which the app is ran from. If XDG_CONFIG_HOME is set, that will be used instead.
+Configuration is handled through environment variables.
 
-```yml
-settings:
-  enable_logging: false
-  protected_branches:
-    - main
-    - master
-    - develop
-    - dev
-    - prod
+```sh
+PROTECTED_BRANCHES="main:master:develop:dev:prod" branch-cleaner
 ```
