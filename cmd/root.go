@@ -5,7 +5,6 @@ import (
 	"log"
 	"os"
 
-	"github.com/knipferrc/branch-cleaner/internal/config"
 	"github.com/knipferrc/branch-cleaner/internal/tui"
 
 	tea "github.com/charmbracelet/bubbletea"
@@ -18,28 +17,17 @@ var rootCmd = &cobra.Command{
 	Version: "0.4.3",
 	Args:    cobra.MaximumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		cfg, err := config.ParseConfig()
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		// If logging is enabled, logs will be output to debug.log.
-		if cfg.Settings.EnableLogging {
+		if len(os.Getenv("DEBUG")) > 0 {
 			f, err := tea.LogToFile("debug.log", "debug")
 			if err != nil {
-				log.Fatal(err)
+				fmt.Println("fatal:", err)
 				os.Exit(1)
 			}
 
-			defer func() {
-				if err = f.Close(); err != nil {
-					log.Fatal(err)
-					os.Exit(1)
-				}
-			}()
+			defer f.Close()
 		}
 
-		m := tui.New(cfg)
+		m := tui.New()
 		var opts []tea.ProgramOption
 
 		// Always append alt screen program option.

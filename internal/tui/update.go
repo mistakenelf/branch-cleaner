@@ -64,7 +64,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			selected, unselected := splitBySelection(m.list.Items())
 
 			for _, it := range selected {
-				if !contains(m.appConfig.Settings.ProtectedBranches, it.title) {
+				if !contains(m.appConfig.ProtectedBranches, it.title) {
 					cmds = append(cmds, deleteSelectedBranchCmd(it.title))
 					deletedBranchTitles = append(deletedBranchTitles, it.title)
 
@@ -107,7 +107,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		case key.Matches(msg, selectAllKey):
 			for idx, i := range m.list.Items() {
 				item := i.(item)
-				if !contains(m.appConfig.Settings.ProtectedBranches, item.title) {
+				if !contains(m.appConfig.ProtectedBranches, item.title) {
 					item.selected = true
 					m.list.RemoveItem(idx)
 					cmds = append(cmds, m.list.InsertItem(idx, item))

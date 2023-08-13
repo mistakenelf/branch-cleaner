@@ -1,8 +1,9 @@
 package tui
 
 import (
-	"github.com/knipferrc/branch-cleaner/internal/config"
+	"fmt"
 
+	"github.com/caarlos0/env"
 	"github.com/charmbracelet/bubbles/key"
 	"github.com/charmbracelet/bubbles/list"
 )
@@ -28,14 +29,19 @@ func (i item) Description() string { return i.desc }
 // FilterValue returns the current filter value.
 func (i item) FilterValue() string { return i.title }
 
+// config represents application wide configuration.
+type config struct {
+	ProtectedBranches []string `env:"PROTECTED_BRANCHES" envSeparator:":"`
+}
+
 // model represents the state of the UI.
 type model struct {
 	list      list.Model
-	appConfig config.Config
+	appConfig config
 }
 
 // New creates an instance of the UI.
-func New(cfg config.Config) model {
+func New() model {
 	l := list.New([]list.Item{}, list.NewDefaultDelegate(), 0, 0)
 	l.Title = "Branch Cleaner"
 	l.AdditionalShortHelpKeys = func() []key.Binding {
@@ -49,6 +55,14 @@ func New(cfg config.Config) model {
 			deleteKey,
 			selectKey,
 		}
+	}
+
+	var cfg = config{
+		ProtectedBranches: []string{"main", "master", "develop", "dev", "prod"},
+	}
+
+	if err := env.Parse(&cfg); err != nil {
+		fmt.Printf("%+v\n", err)
 	}
 
 	return model{
