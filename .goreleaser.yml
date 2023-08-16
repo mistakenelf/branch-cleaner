@@ -36,7 +36,7 @@ archives:
         format: zip
 
 nfpms:
-  - maintainer: Tyler Knipfer <mistakenelf@icloud.com>
+  - maintainer: Tyler Knipfer <tyler.knipfer@icloud.com>
     description: branch-cleaner is a tui for cleaning up local git branches easily
     homepage: https://github.com/mistakenelf/branch-cleaner
     license: MIT
