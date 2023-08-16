@@ -14,7 +14,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:     "branch-cleaner",
 	Short:   "branch-cleaner is a tui for cleaning up local git branches easily",
-	Version: "1.0.0",
+	Version: "1.0.1",
 	Args:    cobra.MaximumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(os.Getenv("DEBUG")) > 0 {
