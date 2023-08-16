@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/knipferrc/branch-cleaner/internal/tui"
+	"github.com/mistakenelf/branch-cleaner/internal/tui"
 
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/spf13/cobra"

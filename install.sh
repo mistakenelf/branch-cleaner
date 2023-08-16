@@ -324,7 +324,7 @@ End of functions from https://github.com/client9/shlib
 EOF
 
 PROJECT_NAME="branch-cleaner"
-OWNER=knipferrc
+OWNER=mistakenelf
 REPO="branch-cleaner"
 BINARY=branch-cleaner
 FORMAT=tar.gz

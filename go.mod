@@ -1,4 +1,4 @@
-module github.com/knipferrc/branch-cleaner
+module github.com/mistakenelf/branch-cleaner
 
 go 1.21
 
