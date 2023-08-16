@@ -13,7 +13,7 @@ var updateCmd = &cobra.Command{
 	Short: "Update branch-cleaner to the latest version",
 	Long:  `Update branch-cleaner to the latest version.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		updateCommand := exec.Command("bash", "-c", "curl -sfL https://raw.githubusercontent.com/knipferrc/branch-cleaner/main/install.sh | sh")
+		updateCommand := exec.Command("bash", "-c", "curl -sfL https://raw.githubusercontent.com/mistakenelf/branch-cleaner/main/install.sh | sh")
 		updateCommand.Stdin = os.Stdin
 		updateCommand.Stdout = os.Stdout
 		updateCommand.Stderr = os.Stderr
